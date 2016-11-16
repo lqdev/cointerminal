@@ -1,0 +1,16 @@
+{
+  "name": "cointerminal",
+  "version": "1.0.0",
+  "description": "NodeJS Cryptocurrency Pricing Data Command-Line Interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LQ Ventures, LLC",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.78.0",
+    "requests": "^0.1.7",
+    "terminal-kit": "^0.25.1"
+  }
+}
