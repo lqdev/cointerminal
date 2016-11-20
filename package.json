@@ -9,6 +9,8 @@
   "author": "LQ Ventures, LLC",
   "license": "ISC",
   "dependencies": {
+    "chart": "jstrace/chart",
+    "clear": "0.0.1",
     "request": "^2.78.0",
     "requests": "^0.1.7",
     "terminal-kit": "^0.25.1"

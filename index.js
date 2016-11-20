@@ -2,9 +2,10 @@ var terminal = require('terminal-kit').terminal;
 var request = require('request');
 var readline = require('readline');
 var CDAPI = require('./coindesk-api');
+var chart = require('./charting');
 
 //Read User Input Interface
-var clEvent = readline.createInterface({
+var cliEvent = readline.createInterface({
     input: process.stdin, //Take input from Standard Input
     output: process.stdout //Output to Standard Output
 });
@@ -14,6 +15,10 @@ var help = [
     {
         command: '-h',
         description: 'Help Command' 
+    },
+    {
+        command: '-c',
+        description: 'Get Historical Data' 
     },
     {
         command: '-r',
@@ -35,6 +40,11 @@ function printHelpPrompt(){
     }
 }
 
+function printHistorical(){
+    CDAPI.getHistorical();
+    console.log(CDAPI.historicalData);
+}
+
 /**
  * Main process of the application that runs on initialization
  */
@@ -48,8 +58,10 @@ function main(){
  * Loop process
  */
 function looper(){
-    clEvent.question('Please enter a command or -h for help:\n',function(answer){
+    cliEvent.question('Please enter a command or -h for help: ',function(answer){
         switch(answer){
+            case '-c': printHistorical();looper();break;
+            case '-g': chart.sampleChart();looper();break;
             case '-h': printHelpPrompt();looper();break;
             case '-r': CDAPI.getRealTime();looper();break;
             case '-p': CDAPI.getQuote('USD');looper();break;
