@@ -1,5 +1,9 @@
 var chart = require('chart');
 var clear = require('clear');
+var CDAPI = require('./coindesk-api');
+
+
+
 
 module.exports = {
     sampleChart: function(){
@@ -15,8 +19,8 @@ module.exports = {
     historicalChart: function(prices){
         clear();
         console.log(chart(prices),{
-            height: 50,
-            width: 50,
+            height: 5,
+            width: 5,
             pointChar: '\\',
             negativePointChar: '-'
         });

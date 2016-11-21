@@ -38,30 +38,31 @@ var getCurrencies = function(){
     });
 }
 
-var getRealTime = function(){
+var getRealTime = function(res){
     request.get(apiURL.real_time,function(error,response,body){
         if(!error){
-            var res = JSON.parse(body);
-            console.log(res);
+            var data = JSON.parse(body);
+            res(data);
         }
     });
 }
 
-var getQuote = function(symbol){
+var getQuote = function(symbol,res){
     request.get(apiURL.quote.replace('<CODE>',symbol),function(error,response,body){
         if(!error){
-            var res = JSON.parse(body);
-            console.log(res);
+            var data = JSON.parse(body);
+            res(data);
         }
     });
 }
 
-var getHistorical = function(){
+var getHistorical = function(res){
     request.get(apiURL.historical,function(error,response,body){
-        historical = body
-        return historical
+        var data = JSON.parse(body)
+        res(data);
     });
 }
+
 module.exports = {
     /**
     *Gets a list of currencies  
