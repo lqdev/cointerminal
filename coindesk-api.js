@@ -19,21 +19,15 @@ var requestParams = {
     for: "yesterday" //Overrides start/end parameter
 }
 
-var currencies = [];
-
-var historical = '';
-
 //###########################
 //Endpoint Wrappers
 //###########################
 
-var getCurrencies = function(){
+var getCurrencies = function(res){
     request.get(apiURL.list_currencies,function(error,response,body){
         if(!error){
             currencies = JSON.parse(body);
-            for(var item in currencies){
-                console.log(currencies[item].country + ": " + currencies[item].currency);
-            }
+            res(currencies);
         }
     });
 }
@@ -82,10 +76,5 @@ module.exports = {
     /**
      * Get Historical Data given some parameters. Defaults to past 31 days of data
      */
-    getHistorical: getHistorical,
-
-    /**
-     * Historical Data
-     */
-    historicalData: historical
+    getHistorical: getHistorical
 };

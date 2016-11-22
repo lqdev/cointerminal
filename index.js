@@ -1,8 +1,10 @@
-var terminal = require('terminal-kit').terminal;
+var clear = require('clear');
+var term = require('terminal-kit').terminal;
 var request = require('request');
 var readline = require('readline');
 var CDAPI = require('./coindesk-api');
 var chart = require('./charting');
+var config = require('./config');
 
 //Read User Input Interface
 var cliEvent = readline.createInterface({
@@ -46,7 +48,7 @@ function printHelpPrompt(){
 
 function printHistorical(){
     CDAPI.getHistorical(function(response){
-        var data = JSON.parse(response);
+        var data = response;
         for(var date in data.bpi){
             console.log(date + ':' + data.bpi[date]);
         }    
@@ -59,9 +61,17 @@ function printQuote(){
     });
 }
 
+function printRealTime(){
+    CDAPI.getRealTime(function(response){
+        var data = response;
+        console.log(data);
+    });
+}
+
 function chartHistorical(){
+    term.moveTo(0,5);
     CDAPI.getHistorical(function(data){
-        var prices = JSON.parse(data);
+        var prices = data;
         var historicalPrices = []
         for(var date in prices.bpi){
             historicalPrices.push(prices.bpi[date]);
@@ -70,27 +80,53 @@ function chartHistorical(){
     })
 }
 
+function displayTopBar(){
+    CDAPI.getRealTime(function(response){
+        var data = response.bpi
+        var USD = data.USD;
+        var GBP = data.GBP;
+        var EUR = data.EUR;
+        term.red(USD.code + ": " + USD.rate);
+        term.right(config.TERM_WIDTH/3);
+        term.red(GBP.code + ": " + GBP.rate);
+        term.right(config.TERM_WIDTH/3);
+        term.red(EUR.code + ": " + EUR.rate);
+        term.black;
+        term.moveTo(1,2);
+    });
+}
+
+function displayCurrency(){
+    term.moveTo(config.TERM_WIDTH/2,2);
+    CDAPI.getCurrencies(function(response){
+        var data = response;
+        term(data);
+    });
+}
 
 /**
  * Main process of the application that runs on initialization
  */
 function main(){
-    looper();
+    displayTopBar();
+    setTimeout(chartHistorical,500);
+    term.down(1);
+    setTimeout(looper,1000);    
 }
-
 
 /**
  * Loop process
  */
-function looper(){
+function looper(){    
     cliEvent.question('Please enter a command or -h for help: ',function(answer){
         switch(answer){
             case '-c': printHistorical();looper();break;
             case '-g': chartHistorical();looper();break;
             case '-h': printHelpPrompt();looper();break;
-            case '-r': CDAPI.getRealTime();looper();break;
+            case '-r': printRealTime();looper();break;
             case '-p': printQuote();looper();break;
             case '-q': process.exit();
+            case '-t': displayTopBar();looper();break;
             default: looper();
         }
     });

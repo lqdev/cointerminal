@@ -17,12 +17,9 @@ module.exports = {
         }))
     },
     historicalChart: function(prices){
-        clear();
-        console.log(chart(prices),{
-            height: 5,
-            width: 5,
-            pointChar: '\\',
-            negativePointChar: '-'
-        });
+        console.log(chart(prices,{
+            height: 35,
+            width: 50
+        }));
     }
 }
