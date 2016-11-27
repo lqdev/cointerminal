@@ -1,7 +1,7 @@
 var chart = require('chart');
 var clear = require('clear');
 var CDAPI = require('./coindesk-api');
-
+var term = require('terminal-kit').terminal;
 
 
 
@@ -17,7 +17,7 @@ module.exports = {
         }))
     },
     historicalChart: function(prices){
-        console.log(chart(prices,{
+        term.yellow(chart(prices,{
             height: 35,
             width: 50
         }));

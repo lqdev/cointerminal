@@ -12,6 +12,8 @@
   "dependencies": {
     "chart": "jstrace/chart",
     "clear": "0.0.1",
+    "commander": "^2.9.0",
+    "prompt": "^1.0.0",
     "request": "^2.78.0",
     "requests": "^0.1.7",
     "terminal-kit": "^0.25.1"
