@@ -28,6 +28,8 @@ Works best when terminal is clear and in full screen.
 ##Quit
 Type `CTRL/CMD + C`
 
+---
+
 ##Commands
 To Display the help prompt, type:
 
@@ -42,6 +44,8 @@ OR
 `node index --currency <CODE>`
 
 The argument to replace `<CODE>` is a three letter currency code. See below for a list of popular codes.
+
+---
 
 ##Currency codes
 
