@@ -33,7 +33,7 @@ Type `CTRL/CMD + C`
 ##Commands
 To Display the help prompt, type:
 
-`node index -h`
+`node index index -h`
 
 Default currency for historical data is USD. In order to set the currency, type:
 
