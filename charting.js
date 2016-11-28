@@ -10,7 +10,7 @@ var term = require('terminal-kit').terminal;
 var historicalChart = function(prices){
         term.yellow(chart(prices,{
             height: 35,
-            width: 50
+            width: 80
         }));
 }
 
