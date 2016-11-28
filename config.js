@@ -2,17 +2,11 @@ var term = require('terminal-kit').terminal;
 
 /**
  * TERM_WIDTH - Terminal width
- * MENU_ITEMS - Terminal Menu Items
+ * TERM_HEIGHT - Terminal height
  */
 
 
 module.exports = {
     TERM_WIDTH: term.width,
-    TERM_HEIGHT: term.height,
-    MENU_ITEMS: ['Real-Time','Historical Chart','Help'],
-    MENU_OPTIONS: {
-        y: term.height - 1,
-        style: term.inverse,
-        selectedStyle: term.dim.blue.bgGreen
-    }
+    TERM_HEIGHT: term.height
 }

@@ -1,19 +1,26 @@
 var clear = require('clear');
 var term = require('terminal-kit').terminal;
-var request = require('request');
 var CDAPI = require('./coindesk-api');
 var chart = require('./charting');
 var config = require('./config');
-var cmd  = require('commander');
+var cmd  = require('./commands').cmd;
 
-var running = false; //Check that application has already been initialized
+/**
+ * Global value that determines whether it is the first time the application is being initialized. 
+ */
+var initialized = false; 
+var currency = cmd.currency;
+
+/**
+ * Gets historical Bitcoin Price Index (BPI) data from Coindesk API and displays it out to the console
+ */
 
 function printHistorical(){ 
-    CDAPI.getHistorical(function(response){
+    CDAPI.getHistorical(currency,function(response){
         var data = response;
         var i = 5;
         term.moveTo(config.TERM_WIDTH/2+5,i);
-        term.white("Historical Data - Past 31 Days");
+        term.white("Historical Data - Past 31 Days (" + currency + ")");
         i++;
         for(var date in data.bpi){
             if(i < 38){
@@ -26,23 +33,26 @@ function printHistorical(){
 }
 
 /**
- * Chart last 31 days of historical data
+ * Charts last 31 days of historical Bitcoin Price Index (BPI) data from Coindesk API on the console.
  */
 function chartHistorical(){
     term.moveTo(1,5);
-    term.white("Chart of Historical Data - Past 31 Days")
+    term.white("Chart of Historical Data - Past 31 Days (" + currency + ")")
     term.moveTo(1,7);
-    CDAPI.getHistorical(function(data){
+    CDAPI.getHistorical(currency,function(data){
         var prices = data;
         var historicalPrices = []
         for(var date in prices.bpi){
             historicalPrices.push(prices.bpi[date]);
         }
         chart.historicalChart(historicalPrices);
-    }); //TODO: ADd Option for Currency
+    }); //TODO: Add Option for Currency
     term.black;
 }
 
+/**
+ * Displays real-time Bitcoin Price Index (BPI) data for USD,GBP, and EUR currencies on a bar at the top of the console window.
+ */
 function displayTopBar(){
     term.moveTo(1,1);
     CDAPI.getRealTime(function(response){
@@ -59,6 +69,9 @@ function displayTopBar(){
     });
 }
 
+/**
+ * Update Top Bar Containing Real-Time Information 
+ */
 function updateTopBar(){
     displayTopBar();
 }
@@ -68,15 +81,15 @@ function updateTopBar(){
  * Render application on console.
  */
 function render(){
-    //Initial Program 
-    if(running == false){
+    //Initialize Program 
+    if(initialized == false){
         clear();
         displayTopBar();
         setTimeout(chartHistorical,500);
         setTimeout(printHistorical,700);
-        running = true;
+        initialized = true;
     }else{
-        updateTopBar();
+        updateTopBar(); 
     }
     setTimeout(render,60000);
 }
@@ -85,12 +98,14 @@ function render(){
  * Main process of the application that runs on initialization
  */
 function main(){
-    render(); //Render application onto console    
+    render();     
 }
 
 //Run application
 main();
 
+
+//Clear terminal and end process when CTRL/CMD + C (Interrupt) is captured
 process.on('SIGINT',function(){
     clear();
     process.exit();
