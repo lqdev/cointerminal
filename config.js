@@ -8,6 +8,7 @@ var term = require('terminal-kit').terminal;
 
 module.exports = {
     TERM_WIDTH: term.width,
+    TERM_HEIGHT: term.height,
     MENU_ITEMS: ['Real-Time','Historical Chart','Help'],
     MENU_OPTIONS: {
         y: term.height - 1,
