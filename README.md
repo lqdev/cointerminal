@@ -28,4 +28,4 @@ Works best when terminal is clear and in full screen.
 ---
 
 ##Upcoming Features
-+Allow for user input to customize currency displayed.
+* Allow for user input to customize currency displayed.
