@@ -9,7 +9,7 @@ every minute. Historical graph and table are complimentary. Both default to the 
 ---
 
 ##Requirements
-*Has only been tested on Windows CMD Windows 
+*Has only been tested on Windows CMD Shell
 
 [Node](https://nodejs.org/en/)
 
