@@ -29,7 +29,7 @@ function printHistorical(){
             }
             i++;
         }    
-    });//TODO: Add option for currency
+    });
 }
 
 /**
@@ -46,7 +46,7 @@ function chartHistorical(){
             historicalPrices.push(prices.bpi[date]);
         }
         chart.historicalChart(historicalPrices);
-    }); //TODO: Add Option for Currency
+    }); 
     term.black;
 }
 
