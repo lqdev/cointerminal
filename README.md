@@ -1,6 +1,6 @@
 #Coin Terminal
 
-![alt text](./AppCapture.jpg)
+![AppCapture.JPG](https://bitbucket.org/repo/MEa7xX/images/1721167463-AppCapture.JPG)
 
 ##Description
 Console application that displays real-time and historical information gathered from [CoinDesk](http://www.coindesk.com/) API. Real-Time information is automatically updated
