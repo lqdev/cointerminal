@@ -1,0 +1,1 @@
+var chart=require("chart"),term=require("terminal-kit").terminal,historicalChart=function(a){term.yellow(chart(a,{height:35,width:80}))};module.exports={historicalChart:historicalChart};
