@@ -1,6 +1,6 @@
 #Coin Terminal
 
-![AppCapture.JPG](https://bitbucket.org/repo/MEa7xX/images/1721167463-AppCapture.JPG)
+![AppCapture.JPG](https://github.com/lqventuresllc/cointerminal/blob/master/AppCapture.JPG)
 
 ##Description
 Console application that displays real-time and historical Bitcoin Price Index (BPI) data powered by the [CoinDesk](http://www.coindesk.com/price) API. Real-Time information is automatically updated
@@ -9,7 +9,7 @@ every minute. Historical graph and table use the same historical data source, wh
 ---
 
 ##Requirements
-*Has only been tested on Windows CMD Shell
+*Has only been tested on Windows CMD Shell and MacOS Sierra. May not work on Ubuntu 16.04
 
 [Node](https://nodejs.org/en/)
 
