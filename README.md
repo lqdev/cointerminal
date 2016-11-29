@@ -17,7 +17,7 @@ every minute. Historical graph and table use the same historical data source, wh
 
 ##Install
 `npm install`
-
+`cd dist`
 ---
 
 ##Run
